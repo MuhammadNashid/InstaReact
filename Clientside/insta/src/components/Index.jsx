@@ -9,8 +9,7 @@ const Index = () => {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/getUser");
-      const res = await response.json();
+    
       // console.log(res)
       setData([...res]);
     } catch (error) {
@@ -22,6 +21,7 @@ const Index = () => {
   return (
     <div>
       <nav>
+        <Link to={"/Login"}>
           <button>login</button>
         {data.map((user,index)=>(
             <Link to={`${user._id}`}>
@@ -35,6 +35,7 @@ const Index = () => {
               </div>
           </Link>     
         ))}
+        </Link>
       </nav>
       <div className="container">
         {data.map((item, index) => (

@@ -1,55 +1,55 @@
+// src/components/LoginPage.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState(false);
+const LoginPage=()=> {
+    const [val, setVal] = useState({
+        email:"",
+        pass:""
+    });
+    
+   
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:5000/login', { email, password });
-            setMessage(response.data.message);
-            setError(false);
-            localStorage.setItem('token', response.data.token); // Save token in localStorage
-        } catch (err) {
-            setMessage(err.response?.data?.message || 'Something went wrong');
-            setError(true);
+        
+        if (val === 'user@example.com' && password === 'password') {
+            alert('Login successful!');
+        } else {
+            setError('Invalid credentials');
         }
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h1>Login</h1>
+        <div className="login-container">
+            <h2>Login</h2>
             <form onSubmit={handleLogin}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    style={{ padding: '10px', marginBottom: '10px', width: '100%' }}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    style={{ padding: '10px', marginBottom: '10px', width: '100%' }}
-                />
-                <button type="submit" style={{ padding: '10px 20px', width: '100%' }}>Login</button>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setVal(e.target.value)}
+                        placeholder="Enter your email"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setVal(e.target.value)}
+                        placeholder="Enter your password"
+                    />
+                </div>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <button type="submit">Login</button>
             </form>
-            {message && (
-                <p style={{ color: error ? 'red' : 'green', marginTop: '10px' }}>
-                    {message}
-                </p>
-            )}
+            <a href="/forgot-password">Forgot Password?</a>
+            <p>Don't have an account? <a href="/register">Sign Up</a></p>
         </div>
     );
-};
+}
 
-export default Login;
+export default LoginPage;
