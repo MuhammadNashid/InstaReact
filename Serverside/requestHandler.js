@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
     auth: {
     //   user: "usmnchusman606@gmail.com",
     //   pass: "kobm upne reiz mryv",
-    user:"usmanchusman606@gmail.com",
+    user:"muhammadnashid905@gmail.com",
     pass:"kobm upne reiz mryv"
     },
   });
@@ -58,7 +58,7 @@ export async function adduser(req,res) {
     bcrypt.hash(pass,10).then((hpwd)=>{
         // console.log(hpwd)
         console.log("data added");
-        userSchema.create({profile,name,email,phone,pass:hpwd}).then(()=>{
+        userSchema.create({profile,name,email,pass:hpwd}).then(()=>{
             res.status(201).send({msg:"Successfull"})
         }).catch((error)=>{
             res.status(404).send({error:error})
@@ -67,56 +67,27 @@ export async function adduser(req,res) {
         console.log(error)
     }) 
 }
-
-
-
-
-
-    export async function generateOTP(req,res) {
+    export async function emailValidate(req,res) {
         const {email}=req.body
-    
-        const check = await userSchema.findOne({email})
-        if(check){
-        let otp=Math.floor(Math.random()*10000)
-        console.log(otp);
-        userSchema.updateOne({email:email},{$set:{otp:otp}}).then(()=>{
-            // console.log("otp added");
-        })
-        
+        const check = await userSchema.findOne({email})  
     const info = await transporter.sendMail({
-    from:"usmnchusman606@gmail.com" , 
+    from:"muhammadnashid905@gmail.com" , 
     to: email, 
-    subject: "OTP",
+    subject: "Email",
     text: "verify", 
-    html: `<b>otp is${otp}</b>`, 
-
-
+    html: `<b>Email-Validate is${
+        `<div style="height: 200px; width: 400px; color: white; background-color: white; 
+            margin-top: 100px; margin-left: 500px; box-shadow: 0 0 2px 2px white;">
+    <h1 style="text-align: center; font-weight: bold; color: seagreen;">Email Verification</h1>
+    <input type="text" placeholder="Enter email" style="border: 0; outline: 0; background-color: lightblue; 
+            margin-top: 20px; margin-left: 70px; width: 250px; height: 30px; padding: 10px 10px;">
+    <button style="border: 0; height: 30px; width: 120px; color: oldlace; background-color: darkcyan;
+            margin-top: 20px; margin-left: 130px;">Verify</button>
+    </div>`}</b>`, 
 });
-      console.log("Message sent: %s", info.messageId)
-      res.status(200).send({msg:"OTP sent"})
-    }
-    else{
-        res.status(404).send({msg:"This Email has not registered"})
-    }  
+    res.status(200).send({msg:"This email validate Succesfully"})
+      
 }
-
-export async function checkotp(req,res) {
-    const {otp,email}=req.body
-    const check = await userSchema.findOne({email})
-    if(check){
-        if(otp==otp){
-            res.status(200).send({msg:"OTP is correct"})
-        }
-        else{
-            res.status(404).send({msg:"OTP is incorrect"})
-        }
-    }
-    else{
-        res.status(404).send({msg:"This Email has not created user"})
-    }
-}
-
-
 export async function updatePass(req,res){
     const {pass,cpass,email}=req.body
     if(pass!=cpass)
