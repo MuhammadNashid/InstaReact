@@ -1,55 +1,57 @@
-// src/components/LoginPage.jsx
-import React, { useState } from 'react';
-
-const LoginPage=()=> {
-    const [val, setVal] = useState({
-        email:"",
-        pass:""
-    });
-    
-   
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        
-        if (val === 'user@example.com' && password === 'password') {
-            alert('Login successful!');
-        } else {
-            setError('Invalid credentials');
-        }
-    };
-
-    return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setVal(e.target.value)}
-                        placeholder="Enter your email"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setVal(e.target.value)}
-                        placeholder="Enter your password"
-                    />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit">Login</button>
-            </form>
-            <a href="/forgot-password">Forgot Password?</a>
-            <p>Don't have an account? <a href="/register">Sign Up</a></p>
-        </div>
-    );
+import React, { useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import './Login.css'
+const Login = () => {
+  const navigate=useNavigate()
+  const [val, setVal] = useState({
+    email:"",
+    pass:""
+  })
+  const handleClick = async (e) => {
+    e.preventDefault()
+    console.log(val)
+  
+    try {
+      const res = await fetch('http://localhost:3000/api/login', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(val)
+      });
+      
+      const data = await res.json()
+  
+      if (res.status === 201) {
+        alert(data.msg)
+        navigate("/")
+      } else {
+        alert(data.error)
+      }
+    } catch (error) {
+      console.error("An error occurred:", error)
+      alert("Something went wrong. Please try again later.")
+    }
+  }
+  return (
+    <div className="main">
+        <div className='form'>
+            <h2>Login Form</h2>
+      <form >
+        <div className='form1'>
+        <input 
+          type="text" name='email'
+          placeholder="email"  
+        />
+        <input 
+          type="text" name='pass'
+          placeholder="password" 
+        /></div><br/>
+    <div className="pass">Forgot password?</div>
+        <button onClick={handleClick} type="submit"><Link className='lnk' to={'/Index'}>Login</Link></button>
+        <div className="signup">Create New Account <Link  to={'/Reg'}>Signup</Link></div>
+      </form>
+      </div>
+    </div>
+  )
 }
 
-export default LoginPage;
+export default Login
