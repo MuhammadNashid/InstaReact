@@ -6,12 +6,7 @@ const {sign} =pkg
 
 const transporter = nodemailer.createTransport({
     service:"gmail",
-    // host: "sandbox.smtp.mailtrap.io",
-    // port:2525 ,
-    // secure: false,
     auth: {
-    //   user: "usmnchusman606@gmail.com",
-    //   pass: "kobm upne reiz mryv",
     user:"muhammadnashid905@gmail.com",
     pass:"kobm upne reiz mryv"
     },
