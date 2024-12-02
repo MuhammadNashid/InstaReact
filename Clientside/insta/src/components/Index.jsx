@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import './Index.css'; // Import the custom CSS for the navbar
+import './Index.css'; 
+
+
+
 function ProfileDropdown() {
   // Manage dropdown open/close state using React's useState hook
   const [isOpen, setIsOpen] = useState(false);

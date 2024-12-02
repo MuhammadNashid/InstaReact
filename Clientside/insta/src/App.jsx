@@ -4,6 +4,7 @@ import Index from './components/Index'
 import Login from './components/Login'
 import Nav from './components/Nav'
 import Reg from './components/Reg'
+import Email from './components/Email'
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/Index" element={<Index/>}/>
         <Route path="/Login" element={<Login/>}/>
         <Route path="/Reg" element={<Reg/>}/>
+        <Route path="/Email" element={<Email/>}/>
       </Routes>
     </BrowserRouter>
       
