@@ -7,9 +7,8 @@ const router=Router();
 
 router.route('/adduser').post(rh.adduser)
 router.route('/login').post(rh.login)
-router.route('/getUser').get(Auth,rh.getUser)
-router.route('/getUserDetails/').get(Auth,rh.getUserDetails)
-router.route('/emailvalidate').post(rh.emailValidate)
-router.route('/updatePass').put(rh.updatePass)
+router.route('/email').post(rh.emailvalidation)
+router.route('/display').get(Auth,rh.display)
+
 
 export default router;
