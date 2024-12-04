@@ -1,82 +1,64 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
+*{
+  margin: 0;
+  padding: 0;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1efef; 
+  color: rgb(10, 10, 10);
+  font-family: Arial, sans-serif;
+  /* height: 80px; */
+  padding: 10px 50px;
+}
+
+.rightside {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  margin-left: 1300px;
+}
+
+.rightside h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #2b2929;
+}
+
+.rightside select {
+  padding: 3px;
+  border-radius: 6px;
+  border: none;
+  background-color:#f1efef;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.rightside select:focus {
+  outline: none;
+  border-color: #97999b; 
+}
+
+
+.rightside select:hover {
+  border-color: #909192;
+}
+option 
+{ 
+  padding: 5px;
+   font-size: 16px; 
+}
+
+@media (max-width: 600px) {
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #333;
-    color: white;
+      flex-direction: column;
+      align-items: flex-start;
   }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
+
+  .rightside {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
   }
-  
-  .right-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .login-button {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .username {
-    font-size: 16px;
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropbtn {
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f1f1f1;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  .dropdown-content {
-    display: block;
-  }
-  
+}

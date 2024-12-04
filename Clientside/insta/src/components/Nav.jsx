@@ -6,10 +6,10 @@ const Nav = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false)
   const navigate = useNavigate()
 
-  const toggleDropdown = (event) => {
-    event.stopPropagation()
-    setIsDropdownVisible((prevState) => !prevState)
-  }
+  // const toggleDropdown = (event) => {
+  //   event.stopPropagation()
+  //   setIsDropdownVisible((prevState) => !prevState)
+  // }
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -31,31 +31,18 @@ const Nav = () => {
   }
 
   return (
-    <nav className="navbar">
-      <div className="logo">Logo</div>
-      <div className="right-section">
-        <button className="login-button">
-          <a href="/login" style={{ color: "white", textDecoration: "none" }}>
-            Login
-          </a>
-        </button>
-        <span className="username">Username</span>
-        <div className="dropdown">
-          <button onClick={toggleDropdown} className="dropbtn">
-            ▼
-          </button>
-          {isDropdownVisible && (
-            <div className="dropdown-content">
-              <a href="/profile">Profile</a>
-              <a onClick={handleLogout} style={{ cursor: "pointer" }}>
-                Logout
-              </a>
-            </div>
-          )}
-        </div>
+    <div className="navbar">
+      <div className="rightside"> 
+        <h3>Username</h3>
+      <div style={{height:"30px",width:"30px",backgroundColor:"white",borderRadius:"50%"}}></div>
+        <select   name="userActions"   id="userActions"  onChange={handleLogout}   >
+          <option value=""></option>
+          <option value="logout">Logout</option>
+          <option value="profile">Profile</option>
+        </select>
       </div>
-    </nav>
-  )
-}
+    </div>
+  );
+};
 
-export default Nav
+export default Nav;

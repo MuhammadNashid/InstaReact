@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Email.css"
 import axios from 'axios'
 
-const Verify = () => {
+const Email = () => {
   const [email, setEmail] = useState("");
 
   const handleChange = (e) => {
@@ -12,7 +12,7 @@ const Verify = () => {
     e.preventDefault();
     try {
       console.log(email)
-      const res=await axios.post("http://localhost:3000/api/verify",{email})
+      const res=await axios.post("http://localhost:3009/api/emailv",{email})
       console.log(res)
       if (res.status==200) {
         alert(res.data.msg)
@@ -27,18 +27,18 @@ const Verify = () => {
     }
   };
 
+
   return (
-    <div className="verify-container">
-      <h1>Email Verification</h1>
+    <div className="email">
+      <h2 className="h2">Email Verification</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Email Address:</label>
-          <input  type="email"  name="email"  value={email}  onChange={handleChange}   placeholder="Enter your email" />
+          <input className="infor" type="email" id="email" name="email"  value={email}  onChange={handleChange} placeholder="Enter your email" />
         </div>
-        <button type="submit" className="btn-verify">  Verify </button>
+        <button type="submit" className="btnv">Verify</button>
       </form>
     </div>
   );
 };
 
-export default Verify;
+export default Email;

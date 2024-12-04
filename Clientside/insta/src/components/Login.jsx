@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     pass: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(formData)
-      const res=await axios.post("http://localhost:3000/api/login",formData)
+      const res=await axios.post("http://localhost:3009/api/login",formData)
       console.log(res)
       if(res.status==201){
         alert("successfully logined!")
@@ -33,11 +30,8 @@ const Login = () => {
       console.log(error);
       
     }
-      
-
-  
-
   };
+
 
   return (
     <div className="main">
@@ -46,7 +40,7 @@ const Login = () => {
       <h1>Login Form</h1>
         <div className="form1">
           <input  type="email"  name="email" placeholder="enter email"  value={formData.email}  onChange={handleChange}  required/>
-          <input  type="password"  name="pass" placeholder="password"  value={formData.password}  onChange={handleChange}  required/>
+          <input  type="password"  name="pass" placeholder="password"  value={formData.pass}  onChange={handleChange}  required/>
         </div>
         <div className="pass"><Link to={'/Email'} className="pass" >Forgot Password?</Link></div>
         <button type="submit">Login</button>
