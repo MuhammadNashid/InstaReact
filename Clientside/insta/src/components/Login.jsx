@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,21 +19,23 @@ const Login = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const res=await fetch('http://localhost:3000/api/login',{
-        method:"POST",
-        headers:{"content-Type":'application/json'},
-        body:JSON.stringify(formData)
-    })
+    try {
+      console.log(formData)
+      const res=await axios.post("http://localhost:3000/api/login",formData)
+      console.log(res)
+      if(res.status==201){
+        alert("successfully logined!")
+        navigate('/')
+      }else{
+        alert(res.data.msg)
+      }
+    } catch (error) {
+      console.log(error);
+      
+    }
       
 
-    const data=await res.json()
-    if(res.status==201){  
-        // localStorage.setItem('token',data.token)
-        alert("you logined")
-    }
-    else{
-        alert(data.error)
-    }
+  
 
   };
 
