@@ -50,7 +50,7 @@ export async function login(req, res) {
     res.status(201).send({ token })
 }
 
-  export async function emailvalidation(req,res) {
+  export async function verifyemail(req,res) {
     const {email}=req.body
     console.log(email);
     if (!(email))  {
@@ -68,7 +68,9 @@ export async function login(req, res) {
         <div style="width: 400px; height: 150px; border:none; background-color: rgb(248, 247, 247); border-radius: 3px; box-shadow:0 0 2px 2px rgb(199, 197, 197); ">
             <h3 style="color: rgb(146, 57, 16); font-weight: bold; font-size: 25px; margin-top: 10px; margin-left: 110px;">Email Validation</h3>
             <input type="text" name="email" id="email" placeholder="enter email" style="width: 250px; height: 30px; margin-top: 40px; margin-left: 20px;">
+            <a href="http://localhost:5173/Reg">
             <button style="height:30px; width: 90px; color: white; background-color: seagreen; border: none; border-radius: 4px; font-weight: bold;">Verify</button>
+            </a>
         </div>
     </div>
   `, 
@@ -80,9 +82,10 @@ export async function login(req, res) {
     }
 }
 
-export async function display(req, res) {
-    // console.log(req.user);
+export async function getUser(req, res) {
     const usr=await userSchema.findOne({_id:req.user.UserID})
+    // console.log(req.user); 
+   
     // console.log(usr);
     res.status(200).send({userid:usr._id}); 
 
