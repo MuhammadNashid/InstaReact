@@ -5,6 +5,7 @@ import Index from './components/Index'
 import Login from './components/Login'
 import Reg from './components/Reg'
 import Email from './components/Email'
+import Profile from './components/Profile'
 function App() {
 
   return (
@@ -12,10 +13,11 @@ function App() {
     <BrowserRouter>
     <Nav/>
       <Routes>
-        <Route path="/" element={<Index/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/Reg" element={<Reg/>}/>
-        <Route path='/email' element={<Email/>}/>
+        <Route path="/" element={<Index/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/reg" element={<Reg/>}></Route>
+        <Route path='/email' element={<Email/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
       </Routes>
     </BrowserRouter>
       

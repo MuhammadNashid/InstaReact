@@ -39,10 +39,14 @@
 .btn-submit {
   width: 100px;
   height: 30px;
-  background-color: #0f8113;
+  background-color: seagreen;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+}
+.btn-submit a{
+  text-decoration: none;
+  color: white;
 }

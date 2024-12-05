@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Reg.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { emailv } from "../../../../Serverside/requestHandler";
+import Email from "./Email";
 
 const Reg= () => {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const Reg= () => {
       console.log(res)
       if(res.status==201){
         alert(res.data.msg)
-        localStorage.removeItem('email')
+        localStorage.removeItem('email',Email)
         navigate('/login')
       }else{
         alert(res.data.msg)
@@ -41,21 +43,21 @@ const Reg= () => {
       <form onSubmit={handleSubmit} method="post">
         <div className="form-group">
           <label>Username:</label>
-          <input   type="text"   name="username"   value={formData.username}   onChange={handleChange}/>
+          <input   type="text"   name="username"   value={formData.username}   onChange={handleChange} placeholder="Name"/>
         </div>
         <div className="form-group">
           <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange}/>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email"/>
         </div>
         <div className="form-group">
           <label>Password:</label>
-          <input type="password" name="pwd" value={formData.pwd} onChange={handleChange}/>
+          <input type="password" name="pwd" value={formData.pwd} onChange={handleChange} placeholder="Password"/>
         </div>
         <div className="form-group">
           <label>Confirm Password:</label>
-          <input type="password" name="cpwd" value={formData.cpwd} onChange={handleChange}/>
+          <input type="password" name="cpwd" value={formData.cpwd} onChange={handleChange} placeholder="Confirm-Password"/>
         </div>
-        <button type="submit" className="btn-submit"><a href="/login">Register</a></button>
+        <button type="submit" className="btn-submit"><a href="/login" >Register</a></button>
       </form>
     </div>
   );
