@@ -10,8 +10,6 @@ const transporter = nodemailer.createTransport({
     // port:2525 ,
     // secure: false,
     auth: {
-    //   user: "usmnchusman606@gmail.com",
-    //   pass: "kobm upne reiz mryv",
     user:"muhammadnashid905@gmail.com@gmail.com",
     pass:"zudt nnnf bhlc qpoh"
     },
@@ -42,7 +40,7 @@ const transporter = nodemailer.createTransport({
     if (!(email && pwd))
       return res.status(500).send({ msg: "fields are empty" })
     const user = await userSchema.findOne({ email })
-    if (!user) return res.status(500).send({ msg: "email donot exist" })
+    if (!user) return res.status(500).send({ msg: "email do not exist" })
     const success = await bcrypt.compare(pwd, user.pwd)
     if (success !== true)
       return res.status(500).send({ msg: "email or password not exist" })
@@ -59,7 +57,7 @@ const transporter = nodemailer.createTransport({
     const user= await userSchema.findOne({email})        
     if (!(user)){
         const info = await transporter.sendMail({
-            from: 'usmanchusman606@gmail.com', // sender address
+            from: 'muhammadnashid905@gmail.com', // sender address
             to: email, // list of receivers
             subject: "email", // Subject line
             text: "VERIFY! your email", // plain text body
