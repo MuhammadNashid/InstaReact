@@ -1,40 +1,38 @@
-import React, {useState , useEffect} from "react"
-import axios from "axios"
+import React, { useEffect } from "react"
+import axios from 'axios'
 import { useNavigate } from "react-router-dom"
-const Index=({setUser})=>{
-    const navigates=useNavigate()
 
-    const getUser=async()=>{
-        const token=localStorage.getItem("token")
-        console.log(!token);
-        
+const Index=({setUser})=>{
+    const navigate=useNavigate()
+    const getUser=async () => {
+        const token=localStorage.getItem('token')
         if(!token){
-            console.log("hai");
-            navigates("/login")
+            navigate('/login')
         }
         else{
-            try{
-                const res=await axios.get("http://localhost:3009/api/display",{headers:{"Authorization": `Bearer ${token}`}})
-
-                if(res.status==200){
+            try {
+                const res=await axios.get('http://localhost:3000/api/Home',{headers: {'Authorization': `Bearer ${token}`}})
+                console.log(res);
+                
+                if (res.status==200) {
                     setUser(res.data.name)
                 }
                 else{
-                    navigates("/login")
+                    navigate('/login')
                 }
-            }catch(error){
-                console.log(error);
-                
+            } catch (error) {
+                console.log(error)
+                location.reload()
+                navigate('/login')
             }
-     }
+        }
     }
     useEffect(()=>{
         getUser()
     },[])
-
     return(
         <>
-        <div><i>Home Page</i></div>
+        <div><h1>Home</h1></div>
         </>
     )
 }

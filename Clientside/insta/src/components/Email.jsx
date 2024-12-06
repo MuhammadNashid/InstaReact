@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const Email = () => {
   const [email, setEmail] = useState("");
-
+  // const token=localStorage.getItem("token")
   const handleChange = (e) => {
     setEmail(e.target.value);
   };
@@ -12,7 +12,7 @@ const Email = () => {
     e.preventDefault();
     try {
       console.log(email)
-      const res=await axios.post("http://localhost:3009/api/emailv",{email})
+      const res=await axios.post("http://localhost:3000/api/emailv",{email})
       console.log(res)
       if (res.status==200) {
         alert(res.data.msg)
@@ -26,8 +26,6 @@ const Email = () => {
       
     }
   };
-
-
   return (
     <div className="email">
       <h2 className="h2">Email Verification</h2>

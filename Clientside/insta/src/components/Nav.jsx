@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Nav.css"
 
-const Nav = () => {
+const Nav = ({user}) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false)
   const navigate = useNavigate()
 
@@ -29,33 +29,34 @@ const Nav = () => {
     alert("Logout Successfully")
     navigate("/login")
   }
-
   return (
     <nav className="navbar">
-      <div className="logo">MY-INSTAGRAM</div>
-      <div className="right-section">
-        <button className="login-button">
-          <a href="/login" style={{ color: "white", textDecoration: "none" }}>
-            Login
-          </a>
-        </button>
-        <span className="username">Username</span>
+      <div>
+        <img src="insta.webp" alt="" />
+      </div>
+      <div className="right">
+        <span className="username">{user}</span>
+        <div onClick={toggleDropdown} style={{height:"30px",width:"30px",backgroundColor:"white",borderRadius:"50%"}}>
         <div className="dropdown">
-          <button onClick={toggleDropdown} className="dropbtn">
-            ▼
-          </button>
-          {isDropdownVisible && (
-            <div className="dropdown-content">
-              <a href="/profile">Profile</a>
-              <a onClick={handleLogout} style={{ cursor: "pointer" }}>
+        {isDropdownVisible && (
+            <div className="dropcontent">
+              <a>Profile</a><br/>
+              <a className="logout" href="/Login" onClick={handleLogout} style={{ cursor: "pointer", textDecoration:"none"}}>
                 Logout
               </a>
             </div>
           )}
-        </div>
-      </div>
-    </nav>
+        </div></div>
+          {/* <button onClick={toggleDropdown} className="dropbtn1">▼</button> */}
+          {/* <button className="login">
+          <a href="/Login">
+            Login
+          </a>
+        </button> */}
+       
+      </div> 
+      </nav>
+    
   )
-};
-
+}
 export default Nav;
